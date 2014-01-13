@@ -107,6 +107,9 @@ static const CGFloat ATVEpsilonFooterHeight = 0.001;
   return [tableSection cellForRowAtIndex:indexPath.row];
 }
 
+
+#pragma mark - Table view delegate
+
 - (CGFloat) tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
   ATVTableSection* tableSection = [self.sections objectAtIndex:indexPath.section];
   return [tableSection heightForRowAtIndex:indexPath.row];
@@ -182,6 +185,29 @@ static const CGFloat ATVEpsilonFooterHeight = 0.001;
   ATVTableSection* tableSection = [self.sections objectAtIndex:indexPath.section];
   return [tableSection canEditRowAtIndex:indexPath.row];
 }
+
+
+// The following "menu controller" related delegate methods are only
+// available in iOS 5+. A polyfill would be a nice addition at some point.
+
+- (BOOL) tableView:(UITableView*)tableView shouldShowMenuForRowAtIndexPath:(NSIndexPath*)indexPath {
+  NSLog(@"tableView:(UITableView*)tableView shouldShowMenuForRowAtIndexPath:(NSIndexPath*)indexPath");
+  ATVTableSection* tableSection = [self.sections objectAtIndex:indexPath.section];
+  return [tableSection shouldShowMenuForRowAtIndex:indexPath.row];
+}
+
+- (BOOL) tableView:(UITableView*)tableView canPerformAction:(SEL)action forRowAtIndexPath:(NSIndexPath*)indexPath withSender:(id)sender {
+  NSLog(@"tableView:(UITableView*)tableView canPerformAction:(SEL)action forRowAtIndexPath:(NSIndexPath*)indexPath withSender:(id)sender");
+  ATVTableSection* tableSection = [self.sections objectAtIndex:indexPath.section];
+  return [tableSection canPerformAction:action forRowAtIndex:indexPath.row withSender:sender];
+}
+
+- (void) tableView:(UITableView*)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath*)indexPath withSender:(id)sender {
+  NSLog(@"tableView:(UITableView*)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath*)indexPath withSender:(id)sender");
+  ATVTableSection* tableSection = [self.sections objectAtIndex:indexPath.section];
+  return [tableSection performAction:action forRowAtIndex:indexPath.row withSender:sender];
+}
+
 
 #pragma mark - Private
 

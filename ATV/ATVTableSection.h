@@ -47,6 +47,14 @@
 - (void) didSelectRowAtIndex:(NSUInteger)index;
 
 
+#pragma mark - Cell menu controller
+// Override in your section subclass if you'd like this functionality.
+// iOS 5+ only. See note in the UITableViewDelegate methods implemented on ATVTableView.
+- (BOOL) shouldShowMenuForRowAtIndex:(NSUInteger)index;
+- (BOOL) canPerformAction:(SEL)action forRowAtIndex:(NSUInteger)index withSender:(id)sender;
+- (void) performAction:(SEL)action forRowAtIndex:(NSUInteger)index withSender:(id)sender;
+
+
 #pragma mark - Row changes
 
 // Methods for subclasses to indicate changes as though they're working with a table view.

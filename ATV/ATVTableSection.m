@@ -101,6 +101,21 @@
 }
 
 
+#pragma mark - Cell menu controller
+
+- (BOOL) shouldShowMenuForRowAtIndex:(NSUInteger)index {
+  return NO;
+}
+
+- (BOOL) canPerformAction:(SEL)action forRowAtIndex:(NSUInteger)index withSender:(id)sender {
+  return NO;
+}
+
+- (void) performAction:(SEL)action forRowAtIndex:(NSUInteger)index withSender:(id)sender {
+  // NOOP.
+}
+
+
 #pragma mark - Row changes
 
 // Methods for subclasses to indicate changes as though they're working with their own table view.
